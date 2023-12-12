@@ -3,6 +3,7 @@ package advancedScoring;
 import java.util.Scanner;
 
 public class ScoringData {
+	//Test
 	
 	//Variables that won't change unless the tournament format is different
 	//for example, this is a three arrow per end indoor style tournament
