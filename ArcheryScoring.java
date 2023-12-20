@@ -1,6 +1,16 @@
 import java.util.Scanner;
 
 public class ArcheryScoring{
+
+    //TODO
+    /*
+     * Fix Average arrow score per round
+     * fix best and worst end printing null
+     * fix the weird pringting of 1 1
+     * fix the counting of number of 8's, 9's, 10's
+     * fix it breaking when number of rounds is set to 1
+     */
+
     public ArcheryScoring(){
 
     }
@@ -78,11 +88,9 @@ public class ArcheryScoring{
 				storeArrowScores[round][end][arrow] = endArrows[arrow];
 			}   
         }
-					
-        
     }
 
-    public void printEndData(){
+    private void printEndData(){
 		if(arrowScoreError == false && numArrowError == false) {
 			runningEndScore[round] += endScore;
 			System.out.println("End Score: " + endScore + "\tTotal Score: " + runningEndScore[round]);
@@ -93,13 +101,13 @@ public class ArcheryScoring{
 		}
     }
 
-    public void printRoundData(){
+    private void printRoundData(){
         System.out.println("Average score per end: " + (double)runningEndScore[round] / numEndsPerRound);
 		System.out.println("Best End: " + bestEnd + " " + "(" + bestEndScore + ")");
 		System.out.println("Worst End: " + worstEnd + " " + "(" + worstEndScore + ")" + "\n");
     }
 
-    public void printTournamentData(){
+    private void printTournamentData(){
         tiebreakData();
         System.out.println("Final Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
 		System.out.println("Number of tens: " + ten);
@@ -145,7 +153,7 @@ public class ArcheryScoring{
         System.out.println(worstEnd);
     }
 
-    public void printHighLowEndScore(){
+    private void printHighLowEndScore(){
         findBestEnd();
         findWorstEnd();
     }
@@ -175,11 +183,4 @@ public class ArcheryScoring{
 	      
         printTournamentData();		
     }
-    //TODO
-    /*
-     * Fix Average arrow score per round
-     * fix best and worst end printing null
-     * fix the weird pringting of 1 1
-     * fix the counting of number of 8's, 9's, 10's
-     */
 }
