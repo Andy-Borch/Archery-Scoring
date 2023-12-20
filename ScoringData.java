@@ -9,7 +9,7 @@ public class ScoringData {
 	//for example, this is a three arrow per end indoor style tournament
 	//to do a five arrow per end with less ends for an outdoor style tournament just change the values here and the program will work with the new values 
 	private static int numArrowPerEnd = 3;
-	private static int numEndsPerRound = 10;
+	private static int numEndsPerRound = 2;
 	private static int numRoundsPerTournament = 2;
 	private static int numArrowsPerTournament = numArrowPerEnd * numEndsPerRound * numRoundsPerTournament;
 	
@@ -32,7 +32,7 @@ public class ScoringData {
 		public ScoringData() {
 		
 		//Tournament starts here
-		System.out.println("Enter 3 individual arrow scores per end and seperate them with commas");
+		System.out.println("Enter 3 individual arrow scores per end and seperate them with commas" + "\n");
 		
 		//Round starts here
 		for(int round = 0; round < runningEndScore.length; round++) {
@@ -85,7 +85,7 @@ public class ScoringData {
 						runningEndScore[round] += endScore;
 						System.out.println("End Score: " + endScore + "\tTotal Score: " + runningEndScore[round]);
 						System.out.print("Average arrow score per end: " + (double)endScore / (double)numArrowPerEnd);
-						System.out.println("\nAverage arrow score per round: " + runningEndScore[round] / ((double)(end + 1) * (double)numArrowPerEnd));
+						System.out.println("\nAverage arrow score per round: " + runningEndScore[round] / ((double)(end + 1) * (double)numArrowPerEnd) + "\n");
 					}else {
 						System.out.print("Invalid input. Please reenter scores\n");
 					}
@@ -110,7 +110,7 @@ public class ScoringData {
 			
 				System.out.println("Average score per end: " + (double)runningEndScore[round] / numEndsPerRound);
 				System.out.println("Best End: " + bestEnd + " " + "(" + bestEndScore + ")");
-				System.out.println("Worst End: " + worstEnd + " " + "(" + worstEndScore + ")");
+				System.out.println("Worst End: " + worstEnd + " " + "(" + worstEndScore + ")" + "\n");
 			
 			}
 			
@@ -134,7 +134,7 @@ public class ScoringData {
 					}
 				}
 			}
-			System.out.println("\nFinal Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
+			System.out.println("Final Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
 			System.out.println("Number of tens: " + ten);
 			System.out.println("Number of nines: " + nine);
 			System.out.println("Number of eights: " + eight);
