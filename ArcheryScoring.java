@@ -4,11 +4,12 @@ public class ArcheryScoring{
 
     //TODO
     /*
-     * Fix Average arrow score this round
      * fix best and worst end values
 	 * fix average score per end:
      * fix the counting of number of 8's, 9's, 10's
      * fix it breaking when number of rounds is set to 1
+	 * add total round score for each round
+	 * add more averages over all rounds like average arrow score, average end score
      */
 
     public ArcheryScoring(){
@@ -76,6 +77,15 @@ public class ArcheryScoring{
 		    for(int j = 0; j < numArrowPerEnd; j++) {	
 		        String temporaryString = scores[j];
 		        endArrows[j] = Integer.parseInt(temporaryString);
+				if(endArrows[j] == 10) {
+		        	ten++;
+					}
+				else if(endArrows[j] == 9) {
+		           	nine++;
+				}
+				else if(endArrows[j] == 8) {
+		           	eight++;
+				}
 		    }
 						
 		    endScore = 0;
@@ -102,7 +112,7 @@ public class ArcheryScoring{
     }
 
     private void printRoundData(){
-		System.out.println("Average arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
+		System.out.println("\nAverage arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
 		System.out.println("Average end score: " + (double)runningEndScore[round] / numEndsPerRound);
 		findBestEnd();
 		findWorstEnd();
@@ -116,7 +126,7 @@ public class ArcheryScoring{
 		System.out.println("Number of eights: " + eight);
     }
 
-    private void tiebreakData(){
+    /* private void tiebreakData(){
 		for(round = 0; round < numRoundsPerTournament; round++) {
 			for(end = 0; end < numEndsPerRound; end++) {
 				for(arrow = 0; arrow < numArrowPerEnd; arrow++) { 
@@ -132,7 +142,7 @@ public class ArcheryScoring{
 				}
 			}
 		}
-    }
+    } */
 
     private void findBestEnd(){
         if(bestEndScore < endScore) {
