@@ -4,12 +4,12 @@ public class ArcheryScoring{
 
     //TODO
     /*
-     * fix best and worst end values
-	 * fix average score per end:
-     * fix the counting of number of 8's, 9's, 10's
+	 * fix average end score
      * fix it breaking when number of rounds is set to 1
 	 * add total round score for each round
 	 * add more averages over all rounds like average arrow score, average end score
+	 * add best and worst end over the whole tournament, not just each round
+	 * add which end was the best and worst, not just score?
      */
 
     public ArcheryScoring(){
@@ -105,21 +105,17 @@ public class ArcheryScoring{
 			runningEndScore[round] += endScore;
 			System.out.println("End Score: " + endScore + "\tTotal Score: " + runningEndScore[round]);
 			System.out.print("Average arrow score this end: " + (double)endScore / (double)numArrowPerEnd + "\n");
-			//tiebreakData();
 		}else {
 			System.out.print("Invalid input. Please reenter scores\n");
 		}
     }
 
     private void printRoundData(){
-		System.out.println("\nAverage arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
-		System.out.println("Average end score: " + (double)runningEndScore[round] / numEndsPerRound);
-		findBestEnd();
-		findWorstEnd();
+		System.out.println("Average arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
+		System.out.println("Average end score: " + (double)runningEndScore[round] / numEndsPerRound + "\n");
     }
 
     private void printTournamentData(){
-        //tiebreakData();
         System.out.println("Final Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
 		System.out.println("Number of tens: " + ten);
 		System.out.println("Number of nines: " + nine);
@@ -145,13 +141,13 @@ public class ArcheryScoring{
     } */
 
     private void findBestEnd(){
-        if(bestEndScore < endScore) {
-			bestEndScore = endScore;
-			bestEnd = "" + (end + 1);
-		}else if(bestEndScore == endScore) {
-			bestEnd = bestEnd + "," + (end + 1);
-		}
-        System.out.println("Best End: " + bestEndScore + " " + "(" + bestEnd + ")");
+        	if(bestEndScore < endScore) {
+				bestEndScore = endScore;
+				bestEnd = "" + (end + 1);
+			}else if(bestEndScore == endScore) {
+				bestEnd = bestEnd + "," + (end + 1);
+			}
+        System.out.println("Best End: " + bestEndScore);
     }
 
     private void findWorstEnd(){
@@ -161,7 +157,7 @@ public class ArcheryScoring{
 		}else if(worstEndScore == endScore) {
 			worstEnd = worstEnd + "," + (end + 1);
 		}
-        System.out.println("Worst End: " + worstEndScore + " " + "(" + worstEnd + ")" + "\n");
+        System.out.println("Worst End: " + worstEndScore + "\n");
     }
 	
 	public void run(){
@@ -180,6 +176,8 @@ public class ArcheryScoring{
 				do {
 					input();
                     printEndData();
+					findBestEnd();
+					findWorstEnd();
 				 } while (arrowScoreError == true || numArrowError == true);
 			}
    
