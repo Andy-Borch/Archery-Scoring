@@ -4,8 +4,10 @@ public class ArcheryScoring{
 
     //TODO
     /*
-	 * fix average end score
-     * fix it breaking when number of rounds is set to 1
+	 * fix average end score this round
+	 * fix average arrow score this round
+	 * 		both are adding the average of round 1 and round 2
+	 * 		so round 1 is always right and round 2 is always wrong
 	 * add total round score for each round
 	 * add more averages over all rounds like average arrow score, average end score
 	 * add best and worst end over the whole tournament, not just each round
@@ -33,6 +35,9 @@ public class ArcheryScoring{
 	String bestEnd;
 	int worstEndScore;
 	String worstEnd;
+
+	double averageArrowScoreEnd;
+	double averageEndScoreRound;
 
     int round = 0;
     int end = 0;
@@ -110,13 +115,22 @@ public class ArcheryScoring{
 		}
     }
 
+	private void roundData(){
+		averageArrowScoreEnd = runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd);
+		averageEndScoreRound = (double)runningEndScore[round] / numEndsPerRound;
+	}
+
     private void printRoundData(){
-		System.out.println("Average arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
-		System.out.println("Average end score: " + (double)runningEndScore[round] / numEndsPerRound + "\n");
+		System.out.println("Average arrow score this round: " + averageArrowScoreEnd);
+		System.out.println("Average end score this round: " + averageArrowScoreEnd + "\n");
     }
 
     private void printTournamentData(){
-        System.out.println("Final Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
+		if(round <= 1){
+			System.out.println("Final score: " + (int)runningEndScore[round]);
+		} else {
+        System.out.println("Final Score: " + ((int)runningEndScore[round] + (int)runningEndScore[round + 1]));
+		}
 		System.out.println("Number of tens: " + ten);
 		System.out.println("Number of nines: " + nine);
 		System.out.println("Number of eights: " + eight);
@@ -178,6 +192,7 @@ public class ArcheryScoring{
                     printEndData();
 					findBestEnd();
 					findWorstEnd();
+					roundData();
 				 } while (arrowScoreError == true || numArrowError == true);
 			}
    
