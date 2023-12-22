@@ -4,9 +4,9 @@ public class ArcheryScoring{
 
     //TODO
     /*
-     * Fix Average arrow score per round
-     * fix best and worst end printing null
-     * fix the weird pringting of 1 1
+     * Fix Average arrow score this round
+     * fix best and worst end values
+	 * fix average score per end:
      * fix the counting of number of 8's, 9's, 10's
      * fix it breaking when number of rounds is set to 1
      */
@@ -62,7 +62,7 @@ public class ArcheryScoring{
 
     private void input(){
         Scanner userScores = new Scanner(System.in);
-		String arrowScores = userScores.next();
+	    String arrowScores = userScores.next();
         String[] scores = arrowScores.split("\\,");
 					
 		arrowScoreError = false;
@@ -94,21 +94,22 @@ public class ArcheryScoring{
 		if(arrowScoreError == false && numArrowError == false) {
 			runningEndScore[round] += endScore;
 			System.out.println("End Score: " + endScore + "\tTotal Score: " + runningEndScore[round]);
-			System.out.print("Average arrow score per end: " + (double)endScore / (double)numArrowPerEnd);
-			System.out.println("\nAverage arrow score per round: " + runningEndScore[round] / ((double)(end + 1) * (double)numArrowPerEnd) + "\n");
+			System.out.print("Average arrow score this end: " + (double)endScore / (double)numArrowPerEnd + "\n");
+			//tiebreakData();
 		}else {
 			System.out.print("Invalid input. Please reenter scores\n");
 		}
     }
 
     private void printRoundData(){
-        System.out.println("Average score per end: " + (double)runningEndScore[round] / numEndsPerRound);
-		System.out.println("Best End: " + bestEnd + " " + "(" + bestEndScore + ")");
-		System.out.println("Worst End: " + worstEnd + " " + "(" + worstEndScore + ")" + "\n");
+		System.out.println("Average arrow score this round: " + runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd));
+		System.out.println("Average end score: " + (double)runningEndScore[round] / numEndsPerRound);
+		findBestEnd();
+		findWorstEnd();
     }
 
     private void printTournamentData(){
-        tiebreakData();
+        //tiebreakData();
         System.out.println("Final Score: " + ((int)runningEndScore[0] + (int)runningEndScore[1]));
 		System.out.println("Number of tens: " + ten);
 		System.out.println("Number of nines: " + nine);
@@ -140,7 +141,7 @@ public class ArcheryScoring{
 		}else if(bestEndScore == endScore) {
 			bestEnd = bestEnd + "," + (end + 1);
 		}
-        System.out.println(bestEnd);
+        System.out.println("Best End: " + bestEndScore + " " + "(" + bestEnd + ")");
     }
 
     private void findWorstEnd(){
@@ -150,12 +151,7 @@ public class ArcheryScoring{
 		}else if(worstEndScore == endScore) {
 			worstEnd = worstEnd + "," + (end + 1);
 		}
-        System.out.println(worstEnd);
-    }
-
-    private void printHighLowEndScore(){
-        findBestEnd();
-        findWorstEnd();
+        System.out.println("Worst End: " + worstEndScore + " " + "(" + worstEnd + ")" + "\n");
     }
 	
 	public void run(){
@@ -178,7 +174,6 @@ public class ArcheryScoring{
 			}
    
             printRoundData();
-			printHighLowEndScore();
 			}
 	      
         printTournamentData();		
