@@ -4,8 +4,7 @@ public class ArcheryScoring{
 
     //TODO
     /*
-	 * fix average end score this round
-	 * fix average arrow score this round
+	 * fix average end score this round and average arrow score this round
 	 * 		both are adding the average of round 1 and round 2
 	 * 		so round 1 is always right and round 2 is always wrong
 	 * add total round score for each round
@@ -99,7 +98,6 @@ public class ArcheryScoring{
 				if(endArrows[arrow] > 10 || endArrows[arrow] < 0) {	
 					arrowScoreError = true;
 				}
-							
 				storeArrowScores[round][end][arrow] = endArrows[arrow];
 			}   
         }
@@ -118,6 +116,7 @@ public class ArcheryScoring{
 	private void roundData(){
 		averageArrowScoreEnd = runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd);
 		averageEndScoreRound = (double)runningEndScore[round] / numEndsPerRound;
+		runningEndScore[round] = 0;
 	}
 
     private void printRoundData(){
