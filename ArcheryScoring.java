@@ -3,13 +3,12 @@ import java.util.Scanner;
 public class ArcheryScoring{
 
     //TODO
-    /*
-	 * fix average end score this round and average arrow score this round
-	 * 		both are adding the average of round 1 and round 2
-	 * 		so round 1 is always right and round 2 is always wrong
-	 * add total round score for each round
+    /* fix average end score this round
+	 * add total round score for each round and move total score to the same chunk
+	 * 		as averange arrow and end score
 	 * add more averages over all rounds like average arrow score, average end score
 	 * add best and worst end over the whole tournament, not just each round
+	 * add round score at end of each round
 	 * add which end was the best and worst, not just score?
      */
 
@@ -41,11 +40,12 @@ public class ArcheryScoring{
     int round = 0;
     int end = 0;
     int arrow = 0;
+
     int ten = 0;
 	int nine = 0;
 	int eight = 0;
 	
-    public static void tournamentSetup(){
+    public void tournamentSetup(){
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter the number of rounds in the tournament");
@@ -116,7 +116,7 @@ public class ArcheryScoring{
 	private void roundData(){
 		averageArrowScoreEnd = runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd);
 		averageEndScoreRound = (double)runningEndScore[round] / numEndsPerRound;
-		runningEndScore[round] = 0;
+		//runningEndScore[round] = 0;
 	}
 
     private void printRoundData(){

@@ -5,6 +5,5 @@ public class ScoringData{
 		ArcheryScoring tournament = new ArcheryScoring();
 		tournament.tournamentSetup();
 		tournament.run();
-
 	}
 }
