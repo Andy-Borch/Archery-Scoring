@@ -3,13 +3,13 @@ import java.util.Scanner;
 public class ArcheryScoring{
 
     //TODO
-    /* 
-	 * add total round score for each round and move total score to the same chunk
+    /* Fix average arrow score this round (broken only after round 1)
+	 * fix average end score this round (broken only after round 1)
+	 * add total round score at end of each round and move total score to the same chunk
 	 * 		as averange arrow and end score
-	 * add more averages over all rounds like average arrow score, average end score
-	 * add best and worst end over the whole tournament, not just each round
-	 * add round score at end of each round
-	 * add which end was the best and worst, not just score?
+	 * add more averages over the whole tournament like average arrow score, average end score, etc
+	 * 		under the number og 8's,9's,10's
+	 * add best and worst end over the whole tournament, not just each round after 8's,9's,10's
      */
 
     public ArcheryScoring(){
@@ -119,7 +119,8 @@ public class ArcheryScoring{
 	}
 
     private void printRoundData(){
-		System.out.println("Average arrow score this round: " + averageArrowScoreEnd);
+		System.out.printf("Average arrow score this round: %.2f", averageArrowScoreEnd);
+		System.out.println();
 		System.out.println("Average end score this round: " + averageEndScoreRound + "\n");
     }
 
