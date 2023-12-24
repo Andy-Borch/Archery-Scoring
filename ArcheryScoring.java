@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ArcheryScoring{
 
     //TODO
-    /* fix average end score this round
+    /* 
 	 * add total round score for each round and move total score to the same chunk
 	 * 		as averange arrow and end score
 	 * add more averages over all rounds like average arrow score, average end score
@@ -116,12 +116,11 @@ public class ArcheryScoring{
 	private void roundData(){
 		averageArrowScoreEnd = runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd);
 		averageEndScoreRound = (double)runningEndScore[round] / numEndsPerRound;
-		//runningEndScore[round] = 0;
 	}
 
     private void printRoundData(){
 		System.out.println("Average arrow score this round: " + averageArrowScoreEnd);
-		System.out.println("Average end score this round: " + averageArrowScoreEnd + "\n");
+		System.out.println("Average end score this round: " + averageEndScoreRound + "\n");
     }
 
     private void printTournamentData(){
