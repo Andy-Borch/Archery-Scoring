@@ -10,6 +10,7 @@ public class ArcheryScoring{
 	 * add more averages over the whole tournament like average arrow score, average end score, etc
 	 * 		under the number og 8's,9's,10's
 	 * add best and worst end over the whole tournament, not just each round after 8's,9's,10's
+	 * round all number to 1 or two digits.
      */
 
     public ArcheryScoring(){
@@ -114,11 +115,12 @@ public class ArcheryScoring{
     }
 
 	private void roundData(){
-		averageArrowScoreEnd = runningEndScore[arrow] / ((double)numEndsPerRound * (double)numArrowPerEnd);
+		averageArrowScoreEnd = runningEndScore[round] / (((double)numEndsPerRound * (double)numArrowPerEnd));
 		averageEndScoreRound = (double)runningEndScore[round] / numEndsPerRound;
 	}
 
     private void printRoundData(){
+		//roundData();
 		System.out.printf("Average arrow score this round: %.2f", averageArrowScoreEnd);
 		System.out.println();
 		System.out.println("Average end score this round: " + averageEndScoreRound + "\n");
@@ -194,10 +196,8 @@ public class ArcheryScoring{
 					roundData();
 				 } while (arrowScoreError == true || numArrowError == true);
 			}
-   
             printRoundData();
 			}
-	      
         printTournamentData();		
     }
 }
